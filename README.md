@@ -1,71 +1,63 @@
-# Script d'installation de la configuration Epitech pour OS basés Debian (*buntu, Mint..), Archlinux, Fedora, Opensuse, Gentoo
+# Script d'installation des outils nécessaires
+Le but de ce script est de vous faciliter la transition vers un OS différent de BLinux.
 
-Ce script a pour but de vous permettre de travailler sur vos projets EPITECH, même si
-vous avez choisi un autre OS que le dump du bocal.
+Il vous permettra notamment d'installer tous les outils nécessaires pour réussir votre première et seconde année à Epitech ainsi que différents bonus.
 
-The installation script might work on any distribution based on :
 
-- opensuse
-- archlinux
-- fedora
-- debian
-- gentoo
+Ceci est une tentative de rendre le script initial universel et interactif afin qu'un maximum d'étudiants puissent en profiter pour gagner du temps à chaque changement de système d'exploitation.
+
+
+Ce script fonctionne actuellement pour les OS basés sur :
+- ArchLinux (Antergos & ApricityOS inclus)
+- Debian (Deepin inclus)
+- Korora (Toutes versions)
+- Gentoo
+- OpenSUSE
+- Solus Project
+
 
 ## Utilisation :
+./install `prénom.nom@epitech.eu`
 
-Commande :
-
-```shell
-$  ./install <prenom.nom@epitech.eu>
-```
-
-Argument :
-
-`<prenom.nom@epitech.eu>` : Votre login Epitech
+Veuillez ne pas exécuter le script en SU.
+Ce dernier vous demandera l'accès SuperUser lorsque nécessaire.
 
 
-## Ce que le script fait :
+## Fonctionnement du script
 
-* mise à jour de votre système
+* Mise à jour de votre système.
 
-* installation des paquets suivant :
+* Installation des paquets suivant :
     - blih
-    - emacs (et la configuration epitech)
-    - build-essentials (libc etc. pour compilation)
-    - libncurses
     - curl
+    - filezilla
     - git
-    - zsh
-    - oh-my-zsh
-    - terminator
-    - valgrind
+    - glibc
+    - libncurses
+    - make
     - ocaml
     - tree
-    - filezilla
-    - man google (bonus)
-* paquet en option :
+    - valgrind
+* Paquets optionnels :
+    - emacs / vim (au choix)
     - makefile-gen
+    - man google
+    - zsh ou fish (au choix)
+    - terminator
+
+* Génère et envois votre clé ssh sur le serveur Epitech.
+
+* Change votre shell de base en zsh ou fish en fonction de votre choix.
+
+* Change votre Terminal de base en Terminator ou RXVT-Unicode selon votre choix.
+
+* Installe les headers Epitech à jours (2017)
 
 
-* génère et uploade votre clé ssh sur le serveur epitech
+## Crédits
 
-* change votre shell de base en zsh
+* montag_p - Pour avoir créé initialement le script.
+* lesell_b - Pour avoir contribué au développement du script.
+* cyril_l - Pour le plugin VIM Epitech que nous aimons tous.
 
-* les headers Epitech contiennent le login même si le username sur la session est différent
-
-
-## Auteur
-
-* montag_p
-
-## Contributeurs
-
-* lesell_b
-
-Pour toute suggestion, n'hesitez pas à ouvrir une issue (dans github)
-
-Ce script a été écrit par montag_p, pour toute suggestion ou remerciement, envoyer un mail à paulcmdt@gmail.com
-
------------------------
-
-Un merci est toujours le bienvenu :)
+Ce script a initialement été écrit par montag_p, pour tous remerciements veuillez le contacter par mail à paulcmdt@gmail.com
