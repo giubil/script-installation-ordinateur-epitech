@@ -1,6 +1,9 @@
 # Script d'installation des outils nécessaires
 Le but de ce script est de vous faciliter la transition vers un OS différent de BLinux.
+
 Il vous permettra notamment d'installer tous les outils nécessaires pour réussir votre première et seconde année à Epitech ainsi que différents bonus.
+
+
 Ceci est une tentative de rendre le script initial universel et interactif afin qu'un maximum d'étudiants puissent en profiter pour gagner du temps à chaque changement de système d'exploitation.
 
 
