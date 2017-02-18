@@ -53,8 +53,8 @@ Ce dernier vous demandera l'accès SuperUser lorsque nécessaire.
 
 ## Crédits
 
-* montag_p
-* lesell_b
-* cyril_l
+* montag_p - Pour avoir créé initialement le script.
+* lesell_b - Pour avoir contribué au développement du script.
+* cyril_l - Pour le plugin VIM Epitech que nous aimons tous.
 
 Ce script a initialement été écrit par montag_p, pour tous remerciements veuillez le contacter par mail à paulcmdt@gmail.com
