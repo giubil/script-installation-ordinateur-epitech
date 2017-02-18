@@ -14,7 +14,7 @@ Ce script fonctionne actuellement pour les OS basés sur :
 
 
 ## Utilisation :
-./install "prénom.nom@epitech.eu"
+./install `prénom.nom@epitech.eu`
 
 Veuillez ne pas exécuter le script en SU.
 Ce dernier vous demandera l'accès SuperUser lorsque nécessaire.
