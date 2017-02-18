@@ -85,11 +85,13 @@ function handle_error
 
 function get_os_type
 {
-	which zypper &> /dev/null && os="opensuse"
 	which pacman &> /dev/null && os="archlinux"
-	which dnf &> /dev/null && os="fedora"
 	which apt-get &> /dev/null && os="debian"
+	which apt-get &> /dev/null && os="deepin"
+	which dnf &> /dev/null && os="fedora"
 	which emerge &> /dev/null && os="gentoo"
+	which zypper &> /dev/null && os="opensuse"
+	which eopkg &> /dev/null && os="solus"
 }
 
 function script_init
@@ -115,20 +117,26 @@ function sys_upgrade
 		return
 	fi
 	case "$os" in
-		opensuse)
-			sudo zypper update
-			;;
 		archlinux)
 			sudo pacman -Syu
-			;;
-		fedora)
-			sudo dnf update
 			;;
 		debian)
 			sudo apt-get update; sudo apt-get upgrade
 			;;
+		deepin)
+			sudo apt-get update; sudo apt-get upgrade
+			;;
+		fedora)
+			sudo dnf update
+			;;
 		gentoo)
 			sudo emerge -u world
+			;;
+		opensuse)
+			sudo zypper update
+			;;
+		solus)
+			sudo eopkg up
 			;;
 	esac
 	handle_error $?
@@ -141,20 +149,26 @@ function sys_install
 	function get_cmd_install
 	{
 		case "$os" in
-			opensuse)
-				echo "zypper install"
-				;;
 			archlinux)
 				echo "pacman -S"
-				;;
-			fedora)
-				echo "dnf install"
 				;;
 			debian)
 				echo "apt-get install"
 				;;
+			deepin)
+				echo "apt-get install"
+				;;
+			fedora)
+				echo "dnf install"
+				;;
 			gentoo)
 				echo "emerge"
+				;;
+			opensuse)
+				echo "zypper install"
+				;;
+			solus)
+				echo "eopkg it"
 				;;
 		esac
 	}
@@ -210,6 +224,7 @@ if test $UID -eq 0; then
 	usage
 	exit 1
 fi
+
 if test -z "$login"; then
 	usage
 	exit 1
@@ -234,7 +249,11 @@ script_header "INSTALLATION DE GCC"
 sys_install gcc
 
 script_header "INSTALLATION DE BUILD-ESSENTIAL POUR LA COMPILATION"
-sys_install build-essential
+if "$os" != "solus"; then
+	sys_install build-essential
+elif "$os" == "solus"; then
+	sys_install system.devel
+fi
 
 script_header "INSTALLATION DE VALGRIND"
 sys_install valgrind
@@ -243,7 +262,11 @@ script_header "INSTALLATION DE OCAML"
 sys_install ocaml
 
 script_header "INSTALLATION DE LA LIBNCURSES"
-sys_install libncurses5
+if "$os" != "solus"; then
+	sys_install libncurses5
+elif "$os" == "solus"; then
+	sys_install ncurses
+fi
 
 script_header "INSTALLATION DE CURL"
 sys_install curl
@@ -269,8 +292,13 @@ sys_install zsh
 
 script_header "OH-MY-ZSH" $C_YELLOW
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#no error check here: remote install.sh has a chsh error
-chsh $USER -s /usr/bin/zsh
+
+if "$os" != "solus"; then
+	chsh $USER -s /usr/bin/zsh
+elif "$os" == "solus"; then
+	sudo chsh $USER -s /bin/zsh
+fi
+
 handle_error $?
 echo "alias blih='blih -u $1'" >> /home/$USER/.zshrc
 echo "alias ns_auth='ns_auth -u $1'" >> /home/$USER/.zshrc
