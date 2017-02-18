@@ -236,9 +236,24 @@ sys_upgrade
 script_header "INSTALLATION DE PYTHON3"
 sys_install python3
 
-script_header "INSTALLATION DE EMACS ET DU SYSTÈME DE HEADERS EPITECH"
-sys_install emacs
-setup_emacs
+script_header "CHOISISSEZ VOTRE EDITEUR FAVORIS PARMI LA SELECTION"
+echo "1) EMACS"
+echo "2) VIM"
+read -p editor
+case "$editor" in
+  emacs)
+		script_header "INSTALLATION DE EMACS ET DU SYSTÈME DE HEADERS EPITECH"
+		sys_install emacs
+		setup_emacs
+    ;;
+	vim)
+		script_header "INSTALLATION DE VIM"
+		sys_install vim
+		script_header "INSTALLATION DU SYSTÈME DE HEADERS EPITECH"
+		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		echo "Plug 'LeBarbu/vim-epitech'" >> /home/$USER/.vimrc
+		;;
+esac
 
 script_header "INSTALLATION DE GCC"
 sys_install gcc
@@ -282,7 +297,7 @@ handle_error $?
 
 
 script_header "CHOISISSEZ VOTRE SHELL FAVORIS PARMI LA SELECTION"
-echo "1) ZSH + OH-MY-ZSH"
+echo "1) ZSH"
 echo "2) FISH"
 read -p shell
 case "$shell" in
