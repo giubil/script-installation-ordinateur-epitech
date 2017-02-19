@@ -297,7 +297,7 @@ handle_error $?
 
 
 script_header "CHOISISSEZ VOTRE SHELL FAVORIS PARMI LA SELECTION"
-echo "1 ~> ZSH"
+echo "1 ~> FISH"
 echo "2 ~> ZSH"
 read -p "Veuillez entrer le chiffre correspondant [1/2]" shell
 case "$shell" in
